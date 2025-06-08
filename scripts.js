@@ -27,7 +27,7 @@ document.addEventListener('documentReady', () => {
      */
     async function loadWords() {
         try {
-            const response = await fetch('tamil_word_game.csv');
+            const response = await fetch('tamil_word_game_combined-upd.csv');
             if (!response.ok) {
                 throw new Error('Network response was not ok. Ensure tamil_word_game.csv is in the same folder.');
             }
