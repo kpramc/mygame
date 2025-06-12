@@ -79,6 +79,14 @@ button:hover {
     background-color: #e0a800;
 }
 
+/* Style for the dynamically added button */
+#show-clues-btn {
+    background-color: #28a745;
+}
+#show-clues-btn:hover {
+    background-color: #218838;
+}
+
 .timer-controls {
     flex-direction: row;
     justify-content: space-between;
@@ -96,6 +104,7 @@ button:hover {
 
 .controls, .results-controls {
     display: flex;
+    flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
     gap: 10px;
     justify-content: center;
     margin-top: 1.5rem;
