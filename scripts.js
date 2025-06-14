@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	// Game State
 	let allWords = [];
 	let gameWords = [];
+	let availableWords = [];
 	let timerId = null;
 	let timeLeft = 0;
 	let isPaused = false;
@@ -53,6 +54,16 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 	}
 
+	 /**
+         * Shuffles an array in place using the Fisher-Yates algorithm.
+         * @param {Array} array The array to shuffle.
+         */
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+               [array[i], array[j]] = [array[j], array[i]]; // ES6 destructuring swap
+           }
+         }
 	/**
 	 * Set up and start a new round
 	 */
@@ -64,9 +75,14 @@ document.addEventListener('DOMContentLoaded', () => {
 		stopBtn.style.display = 'inline-block';
 
 		// Select 5 new random words
-		const shuffled = [...allWords].sort(() => 0.5 - Math.random());
-		gameWords = shuffled.slice(0, 5);
-
+		//const shuffled = [...allWords].sort(() => 0.5 - Math.random());
+		//gameWords = shuffled.slice(0, 5);
+                // If we have fewer than 5 words left, reset the pool from the master list.
+                if (availableWords.length < 5) {
+                   console.log("Not enough unique words remaining. Reshuffling master list.");
+                   availableWords = [...allWords];
+                   shuffleArray(availableWords);
+                }
 		// Display keywords
 		keywordsDisplay.innerHTML = '';
 		gameWords.forEach(({ keyword }) => {
@@ -167,6 +183,8 @@ document.addEventListener('DOMContentLoaded', () => {
 			alert('தயவுசெய்து சரியான நேரத்தை உள்ளிடவும்.');
 			return;
 		}
+		availableWords = [...allWords];
+		shuffleArray(availableWords);
 		startNewRound();
 	});
 
