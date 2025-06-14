@@ -15,6 +15,8 @@ document.addEventListener('DOMContentLoaded', () => {
 	const newGameBtn = document.getElementById('new-game-btn');
 
 	const controlsDiv = document.querySelector('.main-game .controls');
+	startSetupBtn.disabled = true;
+	startSetupBtn.textContent = 'வார்த்தைகளை ஏற்றுகிறது...';
 
 	// Game State
 	let allWords = [];
@@ -48,6 +50,8 @@ document.addEventListener('DOMContentLoaded', () => {
 				};
 			});
 			if (allWords.length === 0) throw new Error("CSV file is empty or could not be parsed.");
+			startSetupBtn.disabled = false;
+			startSetupBtn.textContent = 'விளையாட்டைத் தொடங்கு';
 		} catch (error) {
 			console.error('Error loading or parsing CSV file:', error);
 			document.body.innerHTML = `<div style="text-align: center; padding: 2rem;"><h1>Error</h1><p>வார்த்தை கோப்பை ஏற்றுவதில் பிழை. 'tamil_word_game_combined-upd.csv' கோப்பு இதே போல்டரில் உள்ளதா என சரிபார்க்கவும்.</p></div>`;
