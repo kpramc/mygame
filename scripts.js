@@ -15,13 +15,13 @@ document.addEventListener('DOMContentLoaded', () => {
 	const newGameBtn = document.getElementById('new-game-btn');
 
 	const controlsDiv = document.querySelector('.main-game .controls');
-	startSetupBtn.disabled = true;
-	startSetupBtn.textContent = 'வார்த்தைகளை ஏற்றுகிறது...';
+	//startSetupBtn.disabled = true;
+	//startSetupBtn.textContent = 'வார்த்தைகளை ஏற்றுகிறது...';
 
 	// Game State
 	let allWords = [];
 	let gameWords = [];
-	let availableWords = [];
+	//let availableWords = [];
 	let timerId = null;
 	let timeLeft = 0;
 	let isPaused = false;
@@ -50,8 +50,8 @@ document.addEventListener('DOMContentLoaded', () => {
 				};
 			});
 			if (allWords.length === 0) throw new Error("CSV file is empty or could not be parsed.");
-			startSetupBtn.disabled = false;
-			startSetupBtn.textContent = 'விளையாட்டைத் தொடங்கு';
+			//startSetupBtn.disabled = false;
+			//startSetupBtn.textContent = 'விளையாட்டைத் தொடங்கு';
 		} catch (error) {
 			console.error('Error loading or parsing CSV file:', error);
 			document.body.innerHTML = `<div style="text-align: center; padding: 2rem;"><h1>Error</h1><p>வார்த்தை கோப்பை ஏற்றுவதில் பிழை. 'tamil_word_game_combined-upd.csv' கோப்பு இதே போல்டரில் உள்ளதா என சரிபார்க்கவும்.</p></div>`;
@@ -79,14 +79,14 @@ document.addEventListener('DOMContentLoaded', () => {
 		stopBtn.style.display = 'inline-block';
 
 		// Select 5 new random words
-		//const shuffled = [...allWords].sort(() => 0.5 - Math.random());
-		//gameWords = shuffled.slice(0, 5);
+		 const shuffled = [...allWords].sort(() => 0.5 - Math.random());
+		 gameWords = shuffled.slice(0, 5);
                 // If we have fewer than 5 words left, reset the pool from the master list.
-                if (availableWords.length < 5) {
+                /*if (availableWords.length < 5) {
                    console.log("Not enough unique words remaining. Reshuffling master list.");
                    availableWords = [...allWords];
                    shuffleArray(availableWords);
-                }
+                }*/
 		// Display keywords
 		keywordsDisplay.innerHTML = '';
 		gameWords.forEach(({ keyword }) => {
@@ -187,8 +187,8 @@ document.addEventListener('DOMContentLoaded', () => {
 			alert('தயவுசெய்து சரியான நேரத்தை உள்ளிடவும்.');
 			return;
 		}
-		availableWords = [...allWords];
-		shuffleArray(availableWords);
+		//availableWords = [...allWords];
+		//shuffleArray(availableWords);
 		startNewRound();
 	});
 
